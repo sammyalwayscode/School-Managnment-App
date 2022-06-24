@@ -1,11 +1,57 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import BoardHold from "../DashBoard/AdminBoard/BoardHold/BoardHold";
+import Private from "../Restrict/Private";
+import PrivateRoute from "../Restrict/PrivateRoute";
+import RedirectSign from "./AdminAuth/RedirectSign";
+import SignInAdmin from "./AdminAuth/SignInAdmin";
+import SignUpAdmin from "./AdminAuth/SignUpAdmin";
+import Auth from "./Auth/Auth";
+import StudentAuth from "./StudentAuth/StudentAuth";
+import SignInTeacher from "./TeacherAuth/SignInTeacher";
+import SignUpTeacher from "./TeacherAuth/SignUpTeacher";
 
 const Login = () => {
+  const user = useSelector((state) => state.user);
   return (
     <>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        {!user ? (
+          <>
+            <Route path="/signupadmin" element={<SignUpAdmin />} />
+            <Route path="/adminsignin" element={<SignInAdmin />} />
+            <Route path="/teachersignup" element={<SignUpTeacher />} />
+            <Route path="/signinteacher" element={<SignInTeacher />} />
+            <Route path="/signstudents" element={<StudentAuth />} />
+            <Route
+              path="/login"
+              element={
+                <PrivateRoute>
+                  <Auth />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/adminscreen"
+              element={
+                <Private>
+                  <BoardHold />
+                </Private>
+              }
+            />
+            <Route path="/api/admin/:id/:token" element={<RedirectSign />} />
+          </>
+        ) : (
+          <Route
+            path="*"
+            element={
+              <PrivateRoute>
+                <Auth />
+              </PrivateRoute>
+            }
+          />
+        )}
       </Routes>
     </>
   );
