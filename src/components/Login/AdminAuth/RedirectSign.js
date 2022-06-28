@@ -37,7 +37,7 @@ const RedirectSign = () => {
 
   const onSubmit = handleSubmit(async (val) => {
     console.log(val);
-    const localURL = "http://localhost:2002";
+    const localURL = "http://localhost:2332";
     // const mainURL = "https://skulapp.herokuapp.com";
     const url = `${localURL}/api/admin/signin`;
 
@@ -56,12 +56,12 @@ const RedirectSign = () => {
         });
       })
       .catch((err) => {
-        setError(err.response.data.message);
+        setError(err.response.data);
       });
   });
 
   useEffect(() => {
-    const localURL = "http://localhost:2002";
+    const localURL = "http://localhost:2332";
     // const mainURL = "https://skulapp.herokuapp.com";
     const url = `${localURL}/api/admin/${id}/${token}`;
     axios.get(url);
@@ -116,7 +116,7 @@ const RedirectSign = () => {
               Don't Have an Account? <Span to="/register">Register</Span>
             </SocialText>
             <SocialText>
-              <Span to="/">Forgot Pasword?</Span>
+              <Span to="/">Forgot Pasword rd?</Span>
             </SocialText>
           </Info>
 

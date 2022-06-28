@@ -9,6 +9,13 @@ import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
 import { store } from "./components/ReduxGlobal/store";
 
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+
+// pick a date util library
+// import MomentUtils from "@date-io/moment";
+import DateFnsUtils from "@date-io/date-fns";
+// import LuxonUtils from "@date-io/luxon";
+
 let persistor = persistStore(store);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -16,7 +23,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <App />
+        </MuiPickersUtilsProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

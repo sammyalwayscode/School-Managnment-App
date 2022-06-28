@@ -1,11 +1,16 @@
 const mongoose = require("mongoose");
 const url =
-	"mongodb+srv://schoolManagement:schoolManagement@cluster0.lzdw3.mongodb.net/skulManagement?retryWrites=true&w=majority";
+  "mongodb+srv://Veekta:onyeka17$@cluster0.vkqi4.mongodb.net/SchoolErp2?";
 
 const urls = "mongodb://localhost/schoolManagementDB";
 
-mongoose.connect(urls).then(() => {
-	console.log("database connected...");
-});
+mongoose
+  .connect(urls)
+  .then(() => {
+    console.log("database connected...");
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
 
 module.exports = mongoose;

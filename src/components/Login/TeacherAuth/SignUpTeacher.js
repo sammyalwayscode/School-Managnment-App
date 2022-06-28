@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-const SignUpTeacher = () => {
+const TeacherRegister = () => {
   const yupSchema = yup.object().shape({
     code: yup.string().required("Please provide your school code"),
     schoolName: yup.string().required("School name has to be filled"),
@@ -38,11 +38,18 @@ const SignUpTeacher = () => {
 
   const onSubmit = handleSubmit(async (val) => {
     console.log(val);
-    const localURL = "http://localhost:2331";
+    const localURL = "http://localhost:2332";
     const mainURL = "https://skulapp.herokuapp.com";
-    const url = `${mainURL}/api/teacher/register`;
+    const url = `${localURL}/api/teacher/register`;
 
-    await axios.post(url, val);
+    await axios
+      .post(url, val)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     Swal.fire({
       position: "center",
@@ -159,13 +166,13 @@ const SignUpTeacher = () => {
           <Button type="submit">Continue</Button>
 
           <Social>
-            {/* <SocialText>Use Social Media</SocialText>
+            <SocialText>Use Social Media</SocialText>
             <Icons>
               <Icon />
               <Icon1 />
               <Icon2 />
               <Icon3 />
-            </Icons> */}
+            </Icons>
             <SocialText>
               Have an Account? <Span to="/signinteacher">Login</Span>
             </SocialText>
@@ -176,7 +183,7 @@ const SignUpTeacher = () => {
   );
 };
 
-export default SignUpTeacher;
+export default TeacherRegister;
 
 const PhoneData = styled.div`
   width: 100%;

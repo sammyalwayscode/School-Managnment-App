@@ -4,7 +4,9 @@ import decoder from "jwt-decode";
 // import StudentScreen from "../HomeComp/Student/StudentScreen";
 // import TeacherEndpoint from "../HomeComp/Teacher/TeacherEndpoint";
 import Auth from "../Login/Auth/Auth";
-import BoardRoute from "../DashBoard/AdminBoard/BoardRoute/BoardRoute";
+import BoardRoute from "../DashBoard/Admin/AdminBoard/BoardRoute/BoardRoute";
+import TeachersRoute from "../DashBoard/Teachers/TeachersBoard/TeachersRoute/TeachersRoute";
+import StudentsRoute from "../DashBoard/Students/StudentBoard/StudentsRoute/StudentsRoute";
 
 const PrivateRoute = ({ children }) => {
   const user = useSelector((state) => state.user);
@@ -15,9 +17,9 @@ const PrivateRoute = ({ children }) => {
       return token?.status === "admin" ? (
         <BoardRoute />
       ) : token?.status === "teacher" ? (
-        <BoardRoute />
+        <TeachersRoute />
       ) : token?.status === "student" ? (
-        <BoardRoute />
+        <StudentsRoute />
       ) : null;
     }
   }

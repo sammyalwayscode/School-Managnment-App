@@ -10,7 +10,7 @@ import { HiPresentationChartBar } from "react-icons/hi";
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { FaPowerOff } from "react-icons/fa";
 import styled from "styled-components";
-import { GlobalState } from "../../ContexGlobal/Global";
+import { GlobalState } from "../../../ContexGlobal/Global";
 
 const MobileSide = () => {
   const { mobDisplay } = useContext(GlobalState);

@@ -15,9 +15,49 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-// import { createUser } from "../Global/Global";
+import { createUser } from "../../ReduxGlobal/Global";
 
-const SignIn = () => {
+const SignInAdmin = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const yupSchema = yup.object().shape({
+    email: yup.string().email().required("email has to be filled"),
+    password: yup.string().required("Please enter your preferred password"),
+  });
+
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(yupSchema) });
+
+  const onSubmit = handleSubmit(async (val) => {
+    console.log(val);
+    const localURL = "http://localhost:2332";
+    const mainURL = "https://skulapp.herokuapp.com";
+    const url = `${localURL}/api/admin/signin`;
+
+    await axios
+      .post(url, val)
+      .then((res) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome back on board",
+          showConfirmButton: false,
+          timer: 2500,
+        }).then(() => {
+          dispatch(createUser(res.data.data));
+          navigate("/");
+        });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  });
+
   return (
     <Container>
       <Wrapper>
@@ -40,31 +80,38 @@ const SignIn = () => {
         </Brand>
 
         <Line />
-        <MainCard>
+        <MainCard onSubmit={onSubmit}>
           <LogoTitle1>Admin Sign In</LogoTitle1>
           <Name>
             <InputTitle>Email</InputTitle>
-            <Input placeholder="e.g: peteroti@gmail.com" />
+            <Input
+              placeholder="e.g: peteroti@gmail.com"
+              {...register("email")}
+            />
           </Name>
-          <Error></Error>
+          <Error>{errors?.email?.message}</Error>
           <Name>
             <InputTitle>Password</InputTitle>
-            <Input placeholder="************" type="password" />
+            <Input
+              placeholder="************"
+              type="password"
+              {...register("password")}
+            />
           </Name>
-          <Error></Error>
+          <Error>{errors?.password?.message}</Error>
 
           <Button type="submit">Continue</Button>
-          <Error1></Error1>
+          <Error1>{error && error}</Error1>
           <Info>
             <SocialText>
-              Don't Have an Account? <Span to="/signupadmin">Register</Span>
+              Don't Have an Account? <Span to="/register">Register</Span>
             </SocialText>
             <SocialText>
               <Span to="/password-reset">Forgot Pasword?</Span>
             </SocialText>
           </Info>
 
-          {/* <Social>
+          <Social>
             <SocialText>Use Social Media</SocialText>
             <Icons>
               <Icon />
@@ -72,14 +119,14 @@ const SignIn = () => {
               <Icon2 />
               <Icon3 />
             </Icons>
-          </Social> */}
+          </Social>
         </MainCard>
       </Wrapper>
     </Container>
   );
 };
 
-export default SignIn;
+export default SignInAdmin;
 
 const Error1 = styled.div`
   color: red;
@@ -87,6 +134,10 @@ const Error1 = styled.div`
   margin-bottom: 10px;
   text-align: center;
   font-weight: 500;
+`;
+
+const PhoneData = styled.div`
+  width: 100%;
 `;
 
 const Error = styled.div`
@@ -211,6 +262,32 @@ const Input = styled.input`
   }
 `;
 
+const Hold = styled.div`
+  display: flex;
+  margin: 0 10px;
+  justify-content: space-between;
+  width: 100%;
+  margin: 17px 0;
+`;
+
+const Phone1 = styled.div`
+  width: 100%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  height: 40px;
+  position: relative;
+  margin-left: 5px;
+`;
+
+const Phone = styled.div`
+  width: 100%;
+  border: 1px solid silver;
+  border-radius: 5px;
+  height: 40px;
+  position: relative;
+  margin-right: 5px;
+`;
+
 const Name = styled.div`
   width: 96%;
   border: 1px solid silver;
@@ -271,7 +348,7 @@ const Logo = styled(Link)`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* margin: 60px 0; */
+  margin: 60px 0;
 
   @media screen and (max-width: 1010px) {
     margin-top: 0px;
@@ -347,5 +424,4 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: poppins;
 `;
