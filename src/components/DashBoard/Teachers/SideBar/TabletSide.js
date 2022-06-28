@@ -14,26 +14,21 @@ import { VscCompassActive } from "react-icons/vsc";
 import { HiPresentationChartBar } from "react-icons/hi";
 import { BsCalendar2EventFill } from "react-icons/bs";
 import { FaPowerOff } from "react-icons/fa";
-import { useNavigate, NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logOut } from "../../ReduxGlobal/Global";
 
-const Desktop = () => {
-  const [tabChange, setTabChange] = useState(false);
+const TabletSide = () => {
+  const [tabDiaplay, setTabDisplay] = useState(true);
 
-  const tabChangeHandler = () => {
-    setTabChange(!tabChange);
+  const tabDiaplayHandler = () => {
+    setTabDisplay(!tabDiaplay);
   };
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   return (
-    <>
-      {tabChange ? (
-        <TabContainer>
-          <TabWrapper>
-            <TabBar onClick={tabChangeHandler}>
+    <div>
+      {" "}
+      {tabDiaplay ? (
+        <TabDisplayContainer>
+          <TabDisplayWrapper>
+            <TabBar onClick={tabDiaplayHandler}>
               <AiOutlineMenuUnfold />
             </TabBar>
             <NavIconCtrl>
@@ -57,11 +52,7 @@ const Desktop = () => {
                   <RiParentLine />
                 </IconNav>
               </MainIconNav>
-              <MainIconNav>
-                <IconNav>
-                  <MdAccountTree />
-                </IconNav>
-              </MainIconNav>
+
               <MainIconNav>
                 <IconNav>
                   <SiGoogleclassroom />
@@ -79,11 +70,6 @@ const Desktop = () => {
               </MainIconNav>
               <MainIconNav>
                 <IconNav>
-                  <HiPresentationChartBar />
-                </IconNav>
-              </MainIconNav>
-              <MainIconNav>
-                <IconNav>
                   <BsCalendar2EventFill />
                 </IconNav>
               </MainIconNav>
@@ -93,24 +79,24 @@ const Desktop = () => {
                 </IconNav>
               </MainIconNav>
             </NavIconCtrl>
-          </TabWrapper>
-        </TabContainer>
+          </TabDisplayWrapper>
+        </TabDisplayContainer>
       ) : (
-        <Container>
-          <Wrapper>
-            {/* <Bar onClick={tabChangeHandler}>
+        <ContainerDisplay>
+          <WrapperDiaplay>
+            <Bar onClick={tabDiaplayHandler}>
               <AiOutlineMenuFold />
-            </Bar> */}
+            </Bar>
             <NavsCtrl>
-              <MainNav to="/" style={{ backgroundColor: " #ffa301" }}>
+              <MainNav style={{ backgroundColor: " #ffa301" }}>
                 <Nav>
                   <IconHold style={{ color: "#fff" }}>
                     <AiFillDashboard />
                   </IconHold>
-                  <span>Dashboard</span>
+                  <span>Overview</span>
                 </Nav>
               </MainNav>
-              <MainNav to="/teachers">
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <GiTeacher />
@@ -118,7 +104,7 @@ const Desktop = () => {
                   <span>Teachers</span>
                 </Nav>
               </MainNav>
-              <MainNav to="/students">
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <IoIosPeople />
@@ -126,7 +112,7 @@ const Desktop = () => {
                   <span>Students</span>
                 </Nav>
               </MainNav>
-              <MainNav to="parents">
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <RiParentLine />
@@ -134,15 +120,8 @@ const Desktop = () => {
                   <span>Parents</span>
                 </Nav>
               </MainNav>
-              <MainNav to="account">
-                <Nav>
-                  <IconHold>
-                    <MdAccountTree />
-                  </IconHold>
-                  <span>Account</span>
-                </Nav>
-              </MainNav>
-              <MainNav to="class">
+
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <SiGoogleclassroom />
@@ -150,7 +129,7 @@ const Desktop = () => {
                   <span>Class</span>
                 </Nav>
               </MainNav>
-              <MainNav to="subject">
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <MdSubject />
@@ -158,7 +137,7 @@ const Desktop = () => {
                   <span>Subjects</span>
                 </Nav>
               </MainNav>
-              <MainNav to="routine">
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <VscCompassActive />
@@ -166,15 +145,8 @@ const Desktop = () => {
                   <span>Class Routine</span>
                 </Nav>
               </MainNav>
-              <MainNav to="attendance">
-                <Nav>
-                  <IconHold>
-                    <HiPresentationChartBar />
-                  </IconHold>
-                  <span>Attendance</span>
-                </Nav>
-              </MainNav>
-              <MainNav to="events">
+
+              <MainNav>
                 <Nav>
                   <IconHold>
                     <BsCalendar2EventFill />
@@ -182,13 +154,8 @@ const Desktop = () => {
                   <span>Events</span>
                 </Nav>
               </MainNav>
-              <MainNav to="/">
-                <Nav
-                // onClick={() => {
-                //   dispatch(logOut());
-                //   // navigate("/home");
-                // }}
-                >
+              <MainNav>
+                <Nav>
                   <IconHold>
                     <FaPowerOff />
                   </IconHold>
@@ -196,37 +163,50 @@ const Desktop = () => {
                 </Nav>
               </MainNav>
             </NavsCtrl>
-          </Wrapper>
-        </Container>
+          </WrapperDiaplay>
+        </ContainerDisplay>
       )}
-    </>
+    </div>
   );
 };
 
-export default Desktop;
+export default TabletSide;
 
-const Container = styled.div`
-  margin-top: 50px;
-  min-height: calc(100vh - 50px);
-  background-color: #031e3e;
-  width: 180px;
-  font-family: poppins;
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
-const Wrapper = styled.div``;
-
-const TabContainer = styled.div`
-  margin-top: 50px;
-  min-height: calc(100vh - 50px);
-  background-color: #031e3e;
-  width: 50px;
+const TabDisplayContainer = styled.div`
+  display: none;
   @media (max-width: 770px) {
+    display: block;
+    margin-top: 50px;
+    min-height: calc(100vh - 50px);
+    /* background-color: hotpink; */
+    background-color: #031e3e;
+    width: 50px;
+  }
+
+  @media (max-width: 500px) {
     display: none;
   }
 `;
-const TabWrapper = styled.div``;
+
+const TabDisplayWrapper = styled.div``;
+const ContainerDisplay = styled.div`
+  display: none;
+  @media (max-width: 770px) {
+    display: block;
+    margin-top: 50px;
+    min-height: calc(100vh - 50px);
+    /* background-color: gold; */
+    background-color: #031e3e;
+    width: 180px;
+    position: absolute;
+    font-family: poppins;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+const WrapperDiaplay = styled.div``;
 
 const TabBar = styled.div`
   font-size: 20px;
@@ -257,19 +237,15 @@ const Bar = styled.div`
 `;
 
 const NavsCtrl = styled.div``;
-const MainNav = styled(NavLink)`
-  text-decoration: none;
+const MainNav = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 40px;
   /* border-top: 1px solid gray; */
   /* border-bottom: 1px solid gray; */
-  cursor: pointer;
 
-  /* &.active{
-    background-color: #ffa301;
-  } */
+  cursor: pointer;
 `;
 
 const IconHold = styled.section`

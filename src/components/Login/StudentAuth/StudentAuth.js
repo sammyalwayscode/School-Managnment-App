@@ -7,9 +7,60 @@ import {
   AiFillLinkedin,
   AiFillGoogleCircle,
 } from "react-icons/ai";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { createUser } from "../../ReduxGlobal/Global";
 
 const StudentAuth = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const yupSchema = yup.object().shape({
+    classCode: yup.string().required("Please provide your class code"),
+    schoolName: yup.string().required("School name has to be filled"),
+
+    email: yup.string().email().required("email has to be filled"),
+    password: yup.string().required("Please enter your preferred password"),
+  });
+
+  const {
+    handleSubmit,
+
+    register,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(yupSchema) });
+
+  const onSubmit = handleSubmit(async (val) => {
+    console.log(val);
+    const localURL = "http://localhost:2332";
+    const mainURL = "https://skulapp.herokuapp.com";
+    const url = `${localURL}/api/student/signin`;
+
+    await axios
+      .post(url, val)
+      .then((res) => {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Welcome back on board",
+          showConfirmButton: false,
+          timer: 2500,
+        }).then(() => {
+          dispatch(createUser(res.data.data));
+          navigate("/");
+        });
+      })
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+  });
+
   return (
     <Container>
       <Wrapper>
@@ -32,37 +83,47 @@ const StudentAuth = () => {
         </Brand>
 
         <Line />
-        <MainCard>
+        <MainCard onSubmit={onSubmit}>
           <LogoTitle1>Students's Sign In</LogoTitle1>
           <Hold>
             <PhoneData>
               <Phone>
                 <InputTitle>School Name</InputTitle>
-                <Input placeholder="e.g: GraceLand College" />
+                <Input
+                  placeholder="e.g: GraceLand College"
+                  {...register("schoolName")}
+                />
               </Phone>
-              <Error></Error>
+              <Error>{errors?.password?.message}</Error>
             </PhoneData>
             <PhoneData>
               <Phone1>
                 <InputTitle>Class Code</InputTitle>
-                <Input placeholder="e.g: 30112" />
+                <Input placeholder="e.g: 30112" {...register("classCode")} />
               </Phone1>
-              <Error></Error>
+              <Error>{errors?.classCode?.message}</Error>
             </PhoneData>
           </Hold>
           <Name>
             <InputTitle>Email</InputTitle>
-            <Input placeholder="e.g: fullname@schoolname.com" />
+            <Input
+              placeholder="e.g: fullname@schoolname.com"
+              {...register("email")}
+            />
           </Name>
-          <Error></Error>
+          <Error>{errors?.email?.message}</Error>
           <Name>
             <InputTitle>Password</InputTitle>
-            <Input placeholder="************" type="password" />
+            <Input
+              placeholder="************"
+              type="password"
+              {...register("password")}
+            />
           </Name>
-          <Error></Error>
+          <Error>{errors?.password?.message}</Error>
           <Button type="submit">Continue</Button>
 
-          <Error1></Error1>
+          <Error1>{error && error}</Error1>
           <Info>
             <SocialText>
               {/* Don't Have an Account? <Span to="/">Register</Span> */}
@@ -71,6 +132,16 @@ const StudentAuth = () => {
               <Span to="/">Forgot Pasword?</Span>
             </SocialText>
           </Info>
+
+          <Social>
+            <SocialText>Use Social Media</SocialText>
+            <Icons>
+              <Icon />
+              <Icon1 />
+              <Icon2 />
+              <Icon3 />
+            </Icons>
+          </Social>
         </MainCard>
       </Wrapper>
     </Container>

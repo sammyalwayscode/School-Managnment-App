@@ -8,19 +8,22 @@ const jwt = require("jsonwebtoken");
 // constants
 
 const CLIENT_ID =
-  "922981826695-rviuikdrd4rk1kbsake7iusml8qb2ibc.apps.googleusercontent.com";
-const CLIENT_SECRET = "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";
-const REFRESH_TOKEN =
-  "1//04C7dWmo7YblKCgYIARAAGAQSNwF-L9IrEt7Td5GJtrIEB-g_xad5nm-lvt6tP-RxNPBAoaHu0q1jNXf8c20Bsv89GRyec94Gri4";
-const REDIRECT_URL = "https://developers.google.com/oauthplayground";
+  "428581574814-4k3k7cffju68ecp7354edde8qit1areg.apps.googleusercontent.com";
+const CLIENT_SECRET = "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";
+const CLIENT_REDIRECT = "https://developers.google.com/oauthplayground";
+const CLIENT_TOKEN =
+  "1//04cBUV6HZTt_ACgYIARAAGAQSNwF-L9Ir3pm5uLRde4lRcuV5A5AKlbpB49gnN8mwGZAr0QrY157QBGjbcyGwfxGuh7zuMrNDzW8";
 
-const oAuth = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
-
-oAuth.setCredentials({ refreshToken: REFRESH_TOKEN });
+const oAuth2Client = new google.auth.OAuth2(
+  CLIENT_ID,
+  CLIENT_SECRET,
+  CLIENT_REDIRECT
+);
+oAuth2Client.setCredentials({ refresh_token: CLIENT_TOKEN });
 
 //start
 
-const reVerifiedEmail = async (email, user, code) => {
+const reVerifiedEmail = async (email, code) => {
   try {
     const getToken = crypto.randomBytes(10).toString("hex");
     const token = jwt.sign({ getToken }, "ThisIsTheCode");
@@ -32,13 +35,13 @@ const reVerifiedEmail = async (email, user, code) => {
         type: "OAuth2",
         clientId: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        refresh_token: REFRESH_TOKEN,
+        refreshToken: CLIENT_TOKEN,
         accessToken: access.token,
       },
     });
 
     const mailOptions = {
-      from: "Skuul ✉️ <skuulkude@gmail.com>",
+      from: "Skuul ✉️ <skoolkodecodelab@gmail.com>",
       to: email,
       subject: "Account re-Verification",
       html: `
@@ -62,47 +65,47 @@ const reVerifiedEmail = async (email, user, code) => {
   }
 };
 
-const passwordResetEmail = async (email, user) => {
-  try {
-    const getToken = crypto.randomBytes(10).toString("hex");
-    const token = jwt.sign({ getToken }, "ThisIsTheCode");
+// const passwordResetEmail = async (email) => {
+//   try {
+//     const getToken = crypto.randomBytes(10).toString("hex");
+//     const token = jwt.sign({ getToken }, "ThisIsTheCode");
 
-    const access = await oAuth.getAccessToken();
-    const transport = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        type: "OAuth2",
-        clientId: CLIENT_ID,
-        clientSecret: CLIENT_SECRET,
-        refresh_token: REFRESH_TOKEN,
-        accessToken: access.token,
-      },
-    });
+//     const access = await oAuth.getAccessToken();
+//     const transport = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         type: "OAuth2",
+//         clientId: CLIENT_ID,
+//         clientSecret: CLIENT_SECRET,
+//         refreshToken: CLIENT_TOKEN,
+//         accessToken: access.token,
+//       },
+//     });
 
-    const mailOptions = {
-      from: "Skuul ✉️ <skuulkude@gmail.com>",
-      to: email,
-      subject: "Reset Password Request",
-      html: `
-    <h3>
-        This mail, is sent because you requested for a password reset... Please use the <a
-        href="http://localhost:3000/api/admin/reset/${user._id}/${token}"
-        >Link to Finish</a> up your password reset request!  
-    </h3>
-    `,
-    };
+//     const mailOptions = {
+//       from: "Skuul ✉️ <skuulkude@gmail.com>",
+//       to: email,
+//       subject: "Reset Password Request",
+//       html: `
+//     <h3>
+//         This mail, is sent because you requested for a password reset... Please use the <a
+//         href="http://localhost:3000/api/admin/reset/${user._id}/${token}"
+//         >Link to Finish</a> up your password reset request!
+//     </h3>
+//     `,
+//     };
 
-    transport.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.log(err.message);
-      } else {
-        console.log(`message sent to your mail ${info.response}`);
-      }
-    });
-  } catch (error) {
-    return error;
-  }
-};
+//     transport.sendMail(mailOptions, (err, info) => {
+//       if (err) {
+//         console.log(err.message);
+//       } else {
+//         console.log(`message sent to your mail ${info.response}`);
+//       }
+//     });
+//   } catch (error) {
+//     return error;
+//   }
+// };
 
 const verifiedEmail = async (email, user) => {
   try {
@@ -123,7 +126,7 @@ const verifiedEmail = async (email, user) => {
     });
 
     const mailOptions = {
-      from: "Skuul ✉️ <skuulkude@gmail.com>",
+      from: "Skuul ✉️ <skoolkodecodelab@gmail.com>",
       to: email,
       subject: "Account Verification",
       html: `

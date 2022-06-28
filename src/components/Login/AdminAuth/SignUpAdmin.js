@@ -39,7 +39,7 @@ const SignUpAdmin = () => {
     console.log(val);
 
     // const mainURL = "https://skulapp.herokuapp.com";
-    const localURL = "http://localhost:2002";
+    const localURL = "http://localhost:2332";
     const url = `${localURL}/api/admin/register`;
 
     await axios.post(url, val);

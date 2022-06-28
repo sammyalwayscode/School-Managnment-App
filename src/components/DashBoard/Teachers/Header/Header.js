@@ -1,43 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { IoLogoBitbucket, IoNotifications, IoSearch } from "react-icons/io5";
 import { SiMinutemailer } from "react-icons/si";
 import { HiMenuAlt1 } from "react-icons/hi";
-import { GlobalState } from "../../ContexGlobal/Global";
+import { GlobalState } from "../../../ContexGlobal/Global";
+import AddClassModal from "../TeachersBoard/TeachersComp/AddClassModal/AddClassModal";
 
 const Header = () => {
-  const { mobHandler } = useContext(GlobalState);
+  const { mobHandler, modalSwitch } = useContext(GlobalState);
+
   return (
-    <Container>
-      <Wrapper>
-        <Logo>
-          <IoLogoBitbucket />
-        </Logo>
-        <Navs>
-          <SearchBar>
-            <SearchIcon />
-            <input placeholder="Make a Search..." />
-          </SearchBar>
-          <Icons>
-            <SiMinutemailer />
-          </Icons>
-          <Icons>
-            <IoNotifications />
-          </Icons>
-          <Avatar>
-            <img src="/ava.png" alt="" />
-          </Avatar>
-        </Navs>
-        <MobNav>
-          <AvatarMob>
-            <img src="/ava.png" alt="" />
-          </AvatarMob>
-          <Bugger onClick={mobHandler}>
-            <HiMenuAlt1 />
-          </Bugger>
-        </MobNav>
-      </Wrapper>
-    </Container>
+    <>
+      <Container>
+        <Wrapper>
+          <Logo>
+            <IoLogoBitbucket />
+          </Logo>
+          <Navs>
+            <strong>Teachers</strong>
+            <SearchBar>
+              <SearchIcon />
+              <input placeholder="Make a Search..." />
+            </SearchBar>
+            <Icons>
+              <SiMinutemailer />
+            </Icons>
+            <Icons>
+              <IoNotifications />
+            </Icons>
+            <AddBtn onClick={modalSwitch}>Add Class</AddBtn>
+            <Avatar>
+              <img src="/ava.png" alt="" />
+            </Avatar>
+          </Navs>
+          <MobNav>
+            <AvatarMob>
+              <img src="/ava.png" alt="" />
+            </AvatarMob>
+            <Bugger onClick={mobHandler}>
+              <HiMenuAlt1 />
+            </Bugger>
+          </MobNav>
+        </Wrapper>
+      </Container>
+      <AddClassModal />
+    </>
   );
 };
 
@@ -51,7 +58,7 @@ const Container = styled.div`
   align-items: center;
   /* background-color: darkgoldenrod; */
   backdrop-filter: blur(10px);
-  position: fixed;
+  position: absolute;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 const Wrapper = styled.div`
@@ -105,6 +112,22 @@ const Icons = styled.div`
   align-items: center;
   font-size: 18px;
 `;
+
+const AddBtn = styled.button`
+  height: 30px;
+  width: 110px;
+  border: 0;
+  outline: none;
+  /* background-color: #ffa301; */
+  background-color: #031e3e;
+  color: #fff;
+  font-family: poppins;
+  font-weight: 700;
+  margin: 0 8px;
+  border-radius: 4px;
+  cursor: pointer;
+`;
+
 const Avatar = styled.div`
   height: 35px;
   width: 35px;

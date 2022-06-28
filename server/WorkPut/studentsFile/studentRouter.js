@@ -1,12 +1,13 @@
 const {
-	createStudent,
-	signinStudent,
-	deleteStudent,
-	getStudents,
-	updateStudent,
-	getStudent,
-	passwordReset,
-	newPasswordRequest,
+  createStudent,
+  signinStudent,
+  deleteStudent,
+  getStudents,
+  updateStudent,
+  getStudent,
+  passwordReset,
+  newPasswordRequest,
+  getAClassStudent,
 } = require("../studentsFile/studentsController");
 
 const upload = require("../../utils/multer");
@@ -24,11 +25,14 @@ router.route("/reset/:id/:token").post(passwordReset);
 
 // // router.route("/:id/school").get(getTeacherSchool);
 
-router.route("/:id").get(getStudent);
+//Teacher ID
+router.route("/:id").get(getStudents);
+
+router.route("/classStu/:classID").get(getAClassStudent);
 
 router
-	.route("/:id/:student")
-	.patch(upload, updateStudent)
-	.delete(deleteStudent);
+  .route("/:id/:student")
+  .patch(upload, updateStudent)
+  .delete(deleteStudent);
 
 module.exports = router;

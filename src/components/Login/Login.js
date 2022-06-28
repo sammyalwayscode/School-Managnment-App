@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import BoardHold from "../DashBoard/AdminBoard/BoardHold/BoardHold";
+import BoardHold from "../DashBoard/Admin/AdminBoard/BoardHold/BoardHold";
 import Private from "../Restrict/Private";
 import PrivateRoute from "../Restrict/PrivateRoute";
 import RedirectSign from "./AdminAuth/RedirectSign";
@@ -11,6 +11,7 @@ import Auth from "./Auth/Auth";
 import StudentAuth from "./StudentAuth/StudentAuth";
 import SignInTeacher from "./TeacherAuth/SignInTeacher";
 import SignUpTeacher from "./TeacherAuth/SignUpTeacher";
+import TeachRedirectSign from "./TeacherAuth/TeachRedirectSign";
 
 const Login = () => {
   const user = useSelector((state) => state.user);
@@ -24,8 +25,13 @@ const Login = () => {
             <Route path="/teachersignup" element={<SignUpTeacher />} />
             <Route path="/signinteacher" element={<SignInTeacher />} />
             <Route path="/signstudents" element={<StudentAuth />} />
+            <Route path="/api/admin/:id/:token" element={<RedirectSign />} />
             <Route
-              path="/login"
+              path="/api/teacher/:id/:token"
+              element={<TeachRedirectSign />}
+            />
+            <Route
+              path="/"
               element={
                 <PrivateRoute>
                   <Auth />
@@ -40,7 +46,6 @@ const Login = () => {
                 </Private>
               }
             />
-            <Route path="/api/admin/:id/:token" element={<RedirectSign />} />
           </>
         ) : (
           <Route
