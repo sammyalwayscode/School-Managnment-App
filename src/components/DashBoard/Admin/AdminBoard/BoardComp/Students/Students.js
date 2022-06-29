@@ -77,10 +77,7 @@ const Students = () => {
       <AddStudentModal />
       <Container>
         <Wrapper>
-          <DisplayBtnHold>
-            <h3>All Students</h3>
-            <button onClick={stuModalSwitch}>Add Student</button>
-          </DisplayBtnHold>
+          <h3>All Students</h3>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
@@ -89,7 +86,7 @@ const Students = () => {
                   <StyledTableCell align="right">Student Code</StyledTableCell>
                   <StyledTableCell align="right">Email</StyledTableCell>
                   <StyledTableCell align="right">Class Code</StyledTableCell>
-                  <StyledTableCell align="right">School Name</StyledTableCell>
+                  <StyledTableCell align="right">Class Name</StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -106,7 +103,7 @@ const Students = () => {
                       {row.classCode}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.schoolName}
+                      {row.nameOfClass}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

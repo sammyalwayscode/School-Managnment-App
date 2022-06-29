@@ -1,32 +1,80 @@
 import React from "react";
+import { FaSchool } from "react-icons/fa";
+import { IoQrCode } from "react-icons/io5";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { SiSololearn } from "react-icons/si";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const Overview = () => {
+  const teacherUser = useSelector((state) => state.user);
   return (
     <Container>
       <Wrapper>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-        mollitia, molestiae quas vel sint commodi repudiandae consequuntur
-        voluptatum laborum numquam blanditiis harum quisquam eius sed odit
-        fugiat iusto fuga praesentium optio, eaque rerum! Provident similique
-        accusantium nemo autem. Veritatis obcaecati tenetur iure eius earum ut
-        molestias architecto voluptate aliquam nihil, eveniet aliquid culpa
-        officia aut! Impedit sit sunt quaerat, odit, tenetur error, harum
-        nesciunt ipsum debitis quas aliquid. Reprehenderit, quia. Quo neque
-        error repudiandae fuga? Ipsa laudantium molestias eos sapiente officiis
-        modi at sunt excepturi expedita sint? Sed quibusdam recusandae alias
-        error harum maxime adipisci amet laborum. Perspiciatis minima nesciunt
-        dolorem! Officiis iure rerum voluptates a cumque velit quibusdam sed
-        amet tempora. Sit laborum ab, eius fugit doloribus tenetur fugiat,
-        temporibus enim commodi iusto libero magni deleniti quod quam
-        consequuntur! Commodi minima excepturi repudiandae velit hic maxime
-        doloremque. Quaerat provident commodi consectetur veniam similique ad
-        earum omnis ipsum saepe, voluptas, hic voluptates pariatur est explicabo
-        fugiat, dolorum eligendi quam cupiditate excepturi mollitia maiores
-        labore suscipit quas? Nulla, placeat. Voluptatem quaerat non architecto
-        ab laudantium modi minima sunt esse temporibus sint culpa, recusandae
-        aliquam numquam totam ratione voluptas quod exercitationem fuga.
-        Possimus quis earum veniam quasi aliquam eligendi, placeat qui corporis!
+        <h3>Teacher's Dashboard</h3>
+        <RowOne>
+          <Boxes>
+            <BoxOneIconHold bg="#FF0000">
+              {" "}
+              <FaSchool />{" "}
+            </BoxOneIconHold>
+            <span>
+              School Name: <strong> {teacherUser.schoolName} </strong>{" "}
+            </span>
+          </Boxes>
+          <Boxes>
+            <BoxOneIconHold bg="#89087E">
+              {" "}
+              <MdAdminPanelSettings />{" "}
+            </BoxOneIconHold>
+            <span>
+              Teacher's Name: <strong> {teacherUser.fullName} </strong>
+            </span>
+          </Boxes>
+          <Boxes>
+            <BoxOneIconHold bg="#1FAE04">
+              {" "}
+              <IoQrCode />{" "}
+            </BoxOneIconHold>
+            <span>
+              School Code: <strong> {teacherUser.schoolCode} </strong>
+            </span>
+          </Boxes>
+        </RowOne>
+        <RowTwo>
+          <FirstBox>
+            <InnerBox>
+              <IconHold bgi="#FFEAEA">
+                <SiSololearn color="#FF0062" />
+              </IconHold>
+              <span> {teacherUser.teacherCode} </span>
+              <small>Teacher Code</small>
+            </InnerBox>
+            <InnerBox>
+              <IconHold bgi="#FFEAEA">
+                <SiSololearn color="#FF0062" />
+              </IconHold>
+              <span> {teacherUser.displayName} </span>
+              <small>Display Name</small>
+            </InnerBox>
+            <InnerBox>
+              <IconHold bgi="#FFEAEA">
+                <SiSololearn color="#FF0062" />
+              </IconHold>
+              <span> {teacherUser.class.length} </span>
+              <small>Totla Classes</small>
+            </InnerBox>
+            <InnerBox>
+              <IconHold bgi="#FFEAEA">
+                <SiSololearn color="#FF0062" />
+              </IconHold>
+              <span>23,0000</span>
+              <small>Totla Students</small>
+            </InnerBox>
+          </FirstBox>
+          <SecondBox></SecondBox>
+          <ThirdBox></ThirdBox>
+        </RowTwo>
       </Wrapper>
     </Container>
   );
@@ -41,6 +89,7 @@ const Container = styled.div`
   width: calc(100vw - 180px);
   margin-left: 180px;
   background-color: #f0f1f3;
+  font-family: poppins;
 
   @media (max-width: 770px) {
     margin-left: 50px;
@@ -51,4 +100,102 @@ const Container = styled.div`
     width: 100vw;
   }
 `;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 1150px;
+  @media (max-width: 1150px) {
+    width: 95%;
+  }
+`;
+
+const RowOne = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  /* flex-wrap: wrap; */
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+`;
+const Boxes = styled.div`
+  height: 120px;
+  width: 375px;
+  background-color: #fff;
+  margin: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+
+  span {
+    font-size: 15px;
+  }
+`;
+
+const BoxOneIconHold = styled.div`
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: ${({ bg }) => bg};
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+`;
+
+const RowTwo = styled.div`
+  display: flex;
+`;
+const FirstBox = styled.div`
+  height: 350px;
+  width: 375px;
+  /* background-color: #fff; */
+  margin: 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* border-radius: 6px; */
+`;
+const SecondBox = styled.div`
+  width: 370px;
+  height: 335px;
+  background-color: darkcyan;
+  margin: 10px 10px;
+`;
+const ThirdBox = styled.div`
+  width: 370px;
+  height: 335px;
+  background-color: gold;
+  margin: 10px 10px;
+`;
+
+const InnerBox = styled.div`
+  height: 160px;
+  width: 173px;
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  span {
+    font-weight: 700;
+  }
+  small {
+    font-size: 11px;
+  }
+`;
+
+const IconHold = styled.div`
+  margin: 0 10px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: ${({ bgi }) => bgi};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+`;

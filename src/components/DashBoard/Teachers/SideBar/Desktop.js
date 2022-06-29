@@ -60,7 +60,7 @@ const Desktop = () => {
               <span>All Class</span>
             </Nav>
           </MainNav>
-          <MainNav to="subject">
+          <MainNav to="/classsubject">
             <Nav>
               <IconHold>
                 <MdSubject />
