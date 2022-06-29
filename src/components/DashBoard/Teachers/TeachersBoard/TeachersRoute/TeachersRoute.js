@@ -12,6 +12,7 @@ import Overview from "../TeachersComp/Overview/Overview";
 import Parents from "../TeachersComp/Parents/Parents";
 import Routine from "../TeachersComp/Routine/Routine";
 import Students from "../TeachersComp/Students/Students";
+import ClassForSubject from "../TeachersComp/Subject/ClassForSubject";
 import Subject from "../TeachersComp/Subject/Subject";
 import Teachers from "../TeachersComp/Teahers/Teachers";
 import TeachersHold from "../TeachersHold/TeachersHold";
@@ -31,7 +32,8 @@ const BoardRoute = () => {
             <Route path="/account" element={<Account />} />
             <Route path="/allclass" element={<Class />} />
             <Route path="/classadd" element={<AddClass />} />
-            <Route path="/subject" element={<Subject />} />
+            <Route path="/classsubject" element={<ClassForSubject />} />
+            <Route path="/class/subject/:classID" element={<Subject />} />
             <Route path="/routine" element={<Routine />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/events" element={<Events />} />

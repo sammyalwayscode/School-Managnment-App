@@ -58,7 +58,7 @@ const Container = styled.div`
   align-items: center;
   /* background-color: darkgoldenrod; */
   backdrop-filter: blur(10px);
-  position: absolute;
+  position: fixed;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 `;
 const Wrapper = styled.div`
