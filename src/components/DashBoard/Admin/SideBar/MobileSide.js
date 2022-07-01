@@ -127,7 +127,7 @@ const MobileContainer = styled.div`
     /* background-color: darkorange; */
     background-color: #031e3e;
     width: 200px;
-    position: absolute;
+    position: fixed;
     font-family: poppins;
   }
 `;

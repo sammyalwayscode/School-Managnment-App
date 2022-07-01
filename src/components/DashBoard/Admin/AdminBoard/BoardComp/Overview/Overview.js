@@ -46,47 +46,50 @@ const Overview = () => {
           </Boxes>
         </RowOne>
         <RowTwo>
-          <BoxTwo>
-            <IconHold bgi="#D1F3E0">
-              <IoIosPeople color="#46BA93" />
-            </IconHold>
-            <TeacNum>
-              <Txt>Students</Txt>
-              <Num>15,000</Num>
-            </TeacNum>
-          </BoxTwo>
-          <BoxTwo>
-            <IconHold bgi="#E1F1FF">
-              <GiTeacher color="#3F7AFC" />
-            </IconHold>
-            <TeacNum>
-              <Txt>Teachers</Txt>
-              <Num>7,832</Num>
-            </TeacNum>
-          </BoxTwo>
-          <BoxTwo>
-            <IconHold bgi="#FFF2D8">
-              <RiParentFill color="#FFA12D" />
-            </IconHold>
-            <TeacNum>
-              <Txt>Parents</Txt>
-              <Num>15,000</Num>
-            </TeacNum>
-          </BoxTwo>
-          <BoxTwo>
-            <IconHold bgi="#FFEAEA">
-              <SiSololearn color="#FF0062" />
-            </IconHold>
-            <TeacNum>
-              <Txt>Earnings</Txt>
-              <Num>$231,726</Num>
-            </TeacNum>
-          </BoxTwo>
+          <span>
+            <BoxTwo>
+              <IconHold bgi="#D1F3E0">
+                <IoIosPeople color="#46BA93" />
+              </IconHold>
+              <TeacNum>
+                <Txt>Students</Txt>
+                <Num>15,000</Num>
+              </TeacNum>
+            </BoxTwo>
+            <BoxTwo>
+              <IconHold bgi="#E1F1FF">
+                <GiTeacher color="#3F7AFC" />
+              </IconHold>
+              <TeacNum>
+                <Txt>Teachers</Txt>
+                <Num>7,832</Num>
+              </TeacNum>
+            </BoxTwo>
+          </span>
+          <span>
+            <BoxTwo>
+              <IconHold bgi="#FFF2D8">
+                <RiParentFill color="#FFA12D" />
+              </IconHold>
+              <TeacNum>
+                <Txt>Parents</Txt>
+                <Num>15,000</Num>
+              </TeacNum>
+            </BoxTwo>
+            <BoxTwo>
+              <IconHold bgi="#FFEAEA">
+                <SiSololearn color="#FF0062" />
+              </IconHold>
+              <TeacNum>
+                <Txt>Earnings</Txt>
+                <Num>$231,726</Num>
+              </TeacNum>
+            </BoxTwo>
+          </span>
         </RowTwo>
         <RowThree>
           <ChartOne>
             <StaticDatePicker />
-            chart
           </ChartOne>
           <ChartTwo>Chart Two </ChartTwo>
           <ChartThree>Chart Three</ChartThree>
@@ -129,14 +132,14 @@ const RowOne = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   @media (max-width: 768px) {
     justify-content: center;
   }
 `;
 const Boxes = styled.div`
   height: 120px;
-  width: 375px;
+  width: 360px;
   background-color: #fff;
   margin: 10px 10px;
   display: flex;
@@ -144,6 +147,10 @@ const Boxes = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 6px;
+
+  @media (max-width: 770px) {
+    width: 90%;
+  }
 
   span {
     font-size: 15px;
@@ -165,20 +172,32 @@ const BoxOneIconHold = styled.div`
 const RowTwo = styled.div`
   display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
+  span {
+    display: flex;
+  }
   @media (max-width: 768px) {
     justify-content: center;
+  }
+  @media (max-width: 500px) {
+    span {
+      flex-direction: column;
+    }
   }
 `;
 const BoxTwo = styled.div`
   height: 90px;
-  width: 280px;
+  width: 265px;
   background-color: #fff;
   margin: 10px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 4px;
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
 `;
 const IconHold = styled.div`
   margin: 0 10px;
@@ -201,23 +220,24 @@ const Num = styled.div`
 const RowThree = styled.div`
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 `;
 const ChartOne = styled.div`
-  width: 370px;
-  height: 350px;
-  background-color: darkorange;
+  /* width: 360px; */
+  /* height: 350px; */
+  /* background-color: darkorange; */
   margin: 10px 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 const ChartTwo = styled.div`
-  width: 370px;
-  height: 350px;
+  width: 360px;
+  height: 400px;
   background-color: darkcyan;
   margin: 10px 10px;
 `;
 const ChartThree = styled.div`
-  width: 370px;
-  height: 350px;
+  width: 360px;
+  height: 400px;
   background-color: darkred;
   margin: 10px 10px;
 `;

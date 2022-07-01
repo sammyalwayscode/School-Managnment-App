@@ -20,6 +20,7 @@ import { logOut } from "../../../ReduxGlobal/Global";
 
 const Desktop = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -54,7 +55,7 @@ const Desktop = () => {
               <span>Students</span>
             </Nav>
           </MainNav>
-          <MainNav to="parents">
+          <MainNav to="/parents">
             <Nav>
               <IconHold>
                 <RiParentLine />
@@ -62,7 +63,7 @@ const Desktop = () => {
               <span>Parents</span>
             </Nav>
           </MainNav>
-          <MainNav to="account">
+          <MainNav to="/account">
             <Nav>
               <IconHold>
                 <MdAccountTree />
@@ -70,7 +71,7 @@ const Desktop = () => {
               <span>Fees</span>
             </Nav>
           </MainNav>
-          <MainNav to="class">
+          <MainNav to="/class">
             <Nav>
               <IconHold>
                 <SiGoogleclassroom />
@@ -78,15 +79,15 @@ const Desktop = () => {
               <span>Class</span>
             </Nav>
           </MainNav>
-          <MainNav to="subject">
+          {/* <MainNav to="subject">
             <Nav>
               <IconHold>
                 <MdSubject />
               </IconHold>
               <span>Subjects</span>
             </Nav>
-          </MainNav>
-          <MainNav to="routine">
+          </MainNav> */}
+          <MainNav to="/routine">
             <Nav>
               <IconHold>
                 <VscCompassActive />
@@ -94,7 +95,7 @@ const Desktop = () => {
               <span>Class Routine</span>
             </Nav>
           </MainNav>
-          <MainNav to="attendance">
+          <MainNav to="/attendance">
             <Nav>
               <IconHold>
                 <HiPresentationChartBar />
@@ -102,7 +103,7 @@ const Desktop = () => {
               <span>Expenses</span>
             </Nav>
           </MainNav>
-          <MainNav to="events">
+          <MainNav to="/events">
             <Nav>
               <IconHold>
                 <BsCalendar2EventFill />
@@ -110,11 +111,11 @@ const Desktop = () => {
               <span>Events</span>
             </Nav>
           </MainNav>
-          <MainNav to="">
+          <MainNavOut>
             <Nav
               onClick={() => {
                 dispatch(logOut());
-                // navigate("/home");
+                navigate("/");
               }}
             >
               <IconHold>
@@ -122,7 +123,7 @@ const Desktop = () => {
               </IconHold>
               <span>Log Out</span>
             </Nav>
-          </MainNav>
+          </MainNavOut>
         </NavsCtrl>
       </Wrapper>
     </Container>
@@ -137,6 +138,7 @@ const Container = styled.div`
   background-color: #031e3e;
   width: 180px;
   font-family: poppins;
+  position: fixed;
   @media (max-width: 768px) {
     display: none;
   }
@@ -146,6 +148,20 @@ const Wrapper = styled.div``;
 const NavsCtrl = styled.div``;
 const MainNav = styled(NavLink)`
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  /* border-top: 1px solid gray; */
+  /* border-bottom: 1px solid gray; */
+  cursor: pointer;
+
+  &.active {
+    background-color: #ffa301;
+  }
+`;
+
+const MainNavOut = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

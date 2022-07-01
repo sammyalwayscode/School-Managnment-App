@@ -1,8 +1,10 @@
 import React from "react";
-import { FaSchool } from "react-icons/fa";
+import { FaChalkboardTeacher, FaSchool } from "react-icons/fa";
 import { IoQrCode } from "react-icons/io5";
 import { MdAdminPanelSettings } from "react-icons/md";
-import { SiSololearn } from "react-icons/si";
+import { IoIosPeople } from "react-icons/io";
+import { BsFillDisplayFill } from "react-icons/bs";
+import { VscSymbolClass } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -44,29 +46,29 @@ const Overview = () => {
         <RowTwo>
           <FirstBox>
             <InnerBox>
-              <IconHold bgi="#FFEAEA">
-                <SiSololearn color="#FF0062" />
+              <IconHold bgi="#F3E5F5">
+                <FaChalkboardTeacher color="#8E24AA" />
               </IconHold>
               <span> {teacherUser.teacherCode} </span>
               <small>Teacher Code</small>
             </InnerBox>
             <InnerBox>
-              <IconHold bgi="#FFEAEA">
-                <SiSololearn color="#FF0062" />
+              <IconHold bgi="#E1F1FF">
+                <BsFillDisplayFill color="#3F7AFC" />
               </IconHold>
               <span> {teacherUser.displayName} </span>
               <small>Display Name</small>
             </InnerBox>
             <InnerBox>
-              <IconHold bgi="#FFEAEA">
-                <SiSololearn color="#FF0062" />
+              <IconHold bgi="#FFF2D8">
+                <VscSymbolClass color="#FFA070" />
               </IconHold>
               <span> {teacherUser.class.length} </span>
               <small>Totla Classes</small>
             </InnerBox>
             <InnerBox>
               <IconHold bgi="#FFEAEA">
-                <SiSololearn color="#FF0062" />
+                <IoIosPeople color="#FF0000" />
               </IconHold>
               <span>23,0000</span>
               <small>Totla Students</small>

@@ -8,6 +8,7 @@ import { MdSubject } from "react-icons/md";
 import { SiGoogleclassroom } from "react-icons/si";
 import { VscCompassActive } from "react-icons/vsc";
 import { BsCalendar2EventFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 import { FaPowerOff } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -44,7 +45,7 @@ const Desktop = () => {
               <span>Students</span>
             </Nav>
           </MainNav>
-          <MainNav to="parents">
+          <MainNav to="/parents">
             <Nav>
               <IconHold>
                 <RiParentLine />
@@ -52,7 +53,7 @@ const Desktop = () => {
               <span>Parents</span>
             </Nav>
           </MainNav>
-          <MainNav to="allclass">
+          <MainNav to="/allclass">
             <Nav>
               <IconHold>
                 <SiGoogleclassroom />
@@ -68,7 +69,7 @@ const Desktop = () => {
               <span>Subjects</span>
             </Nav>
           </MainNav>
-          <MainNav to="routine">
+          <MainNav to="/routine">
             <Nav>
               <IconHold>
                 <VscCompassActive />
@@ -76,12 +77,20 @@ const Desktop = () => {
               <span>Class Routine</span>
             </Nav>
           </MainNav>
-          <MainNav to="events">
+          <MainNav to="/events">
             <Nav>
               <IconHold>
                 <BsCalendar2EventFill />
               </IconHold>
               <span>Events</span>
+            </Nav>
+          </MainNav>
+          <MainNav to="/myprofile">
+            <Nav>
+              <IconHold>
+                <CgProfile />
+              </IconHold>
+              <span>My Profile</span>
             </Nav>
           </MainNav>
           <MainNav to="">

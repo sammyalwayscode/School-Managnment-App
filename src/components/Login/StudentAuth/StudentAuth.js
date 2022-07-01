@@ -408,4 +408,5 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f7eff1;
 `;

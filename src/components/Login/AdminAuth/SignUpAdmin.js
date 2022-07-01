@@ -408,4 +408,5 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-family: poppins;
+  background-color: #f7eff1;
 `;
