@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Account from "../TeachersComp/Account/Account";
 import AddClass from "../TeachersComp/AddClass/AddClass";
-import Attendance from "../TeachersComp/Attendance/Attendance";
 import Class from "../TeachersComp/Class/Class";
 import EachClass from "../TeachersComp/Class/EachClass";
 import Events from "../TeachersComp/Events/Events";
@@ -14,6 +13,8 @@ import Routine from "../TeachersComp/Routine/Routine";
 import Students from "../TeachersComp/Students/Students";
 import ClassForSubject from "../TeachersComp/Subject/ClassForSubject";
 import Subject from "../TeachersComp/Subject/Subject";
+import TeacherProfileUpdate from "../TeachersComp/TeacherProfileUpdate/TeacherProfileUpdate";
+import TeacherDetail from "../TeachersComp/Teahers/TeacherDetail";
 import Teachers from "../TeachersComp/Teahers/Teachers";
 import TeachersHold from "../TeachersHold/TeachersHold";
 
@@ -27,6 +28,7 @@ const BoardRoute = () => {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/teachers" element={<Teachers />} />
+            <Route path="/teachers/:id" element={<TeacherDetail />} />
             <Route path="/students" element={<Students />} />
             <Route path="/parents" element={<Parents />} />
             <Route path="/account" element={<Account />} />
@@ -35,7 +37,7 @@ const BoardRoute = () => {
             <Route path="/classsubject" element={<ClassForSubject />} />
             <Route path="/class/subject/:classID" element={<Subject />} />
             <Route path="/routine" element={<Routine />} />
-            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/myprofile" element={<TeacherProfileUpdate />} />
             <Route path="/events" element={<Events />} />
             <Route path="/allclass/:classID" element={<EachClass />} />
           </Routes>

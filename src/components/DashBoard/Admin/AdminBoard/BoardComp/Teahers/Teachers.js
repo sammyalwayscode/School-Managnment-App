@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { GlobalState } from "../../../../../ContexGlobal/Global";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,25 +50,26 @@ const Teacher = () => {
   const { stuModalSwitch } = useContext(GlobalState);
   const { classID } = useParams();
 
+  const adminUser = useSelector((state) => state.user);
+
   const [allTeachers, setAllTeachers] = React.useState([]);
-  // const user = useSelector((state) => state.user);
 
   console.log(classID);
 
   const getTeachers = async () => {
     const mainURL = "";
     const localURL = "http://localhost:2332";
-    const url = `${localURL}/api/teacher`;
+    const url = `${localURL}/api/admin/${adminUser._id}/teachers/get`;
 
     await axios.get(url).then((res) => {
-      setAllTeachers(res.data.data);
-      console.log(res.data.data);
+      setAllTeachers(res.data.data.teacher);
+      console.log(res.data.data.teacher);
     }, []);
   };
 
   React.useEffect(() => {
     getTeachers();
-    // console.log(students);
+    console.log(allTeachers);
   }, []);
 
   return (
@@ -81,6 +82,7 @@ const Teacher = () => {
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
               <TableHead>
                 <TableRow>
+                  <StyledTableCell>...</StyledTableCell>
                   <StyledTableCell>Teacher Name</StyledTableCell>
                   <StyledTableCell align="right">Teacher Code</StyledTableCell>
                   <StyledTableCell align="right">Email</StyledTableCell>
@@ -89,8 +91,13 @@ const Teacher = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {allTeachers.map((row) => (
+                {allTeachers?.map((row) => (
                   <StyledTableRow key={row._id}>
+                    <StyledTableCell component="th" scope="row">
+                      <AvatarName to={`/teachers/${row._id}`}>
+                        <strong> {row.fullName.charAt()} </strong>
+                      </AvatarName>
+                    </StyledTableCell>
                     <StyledTableCell component="th" scope="row">
                       {row.fullName}
                     </StyledTableCell>
@@ -127,8 +134,6 @@ const Container = styledComponents.div`
   display: flex;
   justify-content: center;
   font-family: poppins;
-  position: absolute;
-  z-index: 200;
 
   @media (max-width: 770px) {
     margin-left: 50px;
@@ -146,23 +151,20 @@ width: 1150px;
 }
 `;
 
-const DisplayBtnHold = styledComponents.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-
-button{
+const AvatarName = styledComponents(NavLink)`
   height: 30px;
-  width: 110px;
-  border: 0;
-  outline: none;
-  /* background-color: #ffa301; */
+  width: 30px;
+  border-radius: 50%;
   background-color: #031e3e;
-  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items:center;
   font-family: poppins;
-  font-weight: 700;
-  margin: 0 8px;
-  border-radius: 4px;
   cursor: pointer;
-}
+  text-decoration: none;
+
+  strong{
+    color: #fff;
+    font-weight: bold;
+  }
 `;

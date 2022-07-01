@@ -11,6 +11,7 @@ import Parents from "../BoardComp/Parents/Parents";
 import Routine from "../BoardComp/Routine/Routine";
 import Students from "../BoardComp/Students/Students";
 import Subject from "../BoardComp/Subject/Subject";
+import TeacherDetail from "../BoardComp/Teahers/TeacherDetail";
 import Teachers from "../BoardComp/Teahers/Teachers";
 import BoardHold from "../BoardHold/BoardHold";
 
@@ -32,6 +33,7 @@ const BoardRoute = () => {
             <Route path="/routine" element={<Routine />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/teachers/:id" element={<TeacherDetail />} />
           </Routes>
         </Container>
       ) : null}
