@@ -7,6 +7,7 @@ import { RiParentLine } from "react-icons/ri";
 import { MdSubject } from "react-icons/md";
 import { VscCompassActive } from "react-icons/vsc";
 import { BsCalendar2EventFill } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 import { FaPowerOff } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -74,6 +75,14 @@ const Desktop = () => {
                 <BsCalendar2EventFill />
               </IconHold>
               <span>Events</span>
+            </Nav>
+          </MainNav>
+          <MainNav to="/myprofile">
+            <Nav>
+              <IconHold>
+                <CgProfile />
+              </IconHold>
+              <span>My Profile</span>
             </Nav>
           </MainNav>
           <MainNav to="">

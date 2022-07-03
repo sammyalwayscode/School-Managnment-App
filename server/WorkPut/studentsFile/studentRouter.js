@@ -30,9 +30,6 @@ router.route("/:id").get(getStudents);
 
 router.route("/classStu/:classID").get(getAClassStudent);
 
-router
-  .route("/:id/:student")
-  .patch(upload, updateStudent)
-  .delete(deleteStudent);
+router.route("/:id").patch(updateStudent).delete(deleteStudent);
 
 module.exports = router;

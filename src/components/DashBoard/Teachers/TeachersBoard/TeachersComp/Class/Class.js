@@ -59,7 +59,6 @@ const Container = styled.div`
   font-family: poppins;
   display: flex;
   justify-content: center;
-  z-index: 200;
 
   @media (max-width: 770px) {
     margin-left: 50px;

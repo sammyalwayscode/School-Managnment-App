@@ -3,9 +3,9 @@ import { useSelector } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import Account from "../StudentsComp/Account/Account";
-import Attendance from "../StudentsComp/Attendance/Attendance";
 import Class from "../StudentsComp/Class/Class";
 import Events from "../StudentsComp/Events/Events";
+import MyProfile from "../StudentsComp/MyProfile/MyProfile";
 import Overview from "../StudentsComp/Overview/Overview";
 import Parents from "../StudentsComp/Parents/Parents";
 import Routine from "../StudentsComp/Routine/Routine";
@@ -30,7 +30,7 @@ const BoardRoute = () => {
             <Route path="/class" element={<Class />} />
             <Route path="/subject" element={<Subject />} />
             <Route path="/routine" element={<Routine />} />
-            <Route path="/attendance" element={<Attendance />} />
+            <Route path="/myprofile" element={<MyProfile />} />
             <Route path="/events" element={<Events />} />
           </Routes>
         </Container>

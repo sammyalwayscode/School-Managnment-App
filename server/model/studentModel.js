@@ -24,6 +24,15 @@ const studentModel = mongoose.Schema(
     nameOfClass: {
       type: String,
     },
+    parentName1: {
+      type: String,
+    },
+    parentName2: {
+      type: String,
+    },
+    parentPhone: {
+      type: Number,
+    },
 
     fullName: {
       type: String,
@@ -39,7 +48,15 @@ const studentModel = mongoose.Schema(
     password: {
       type: String,
     },
-
+    DOB: {
+      type: String,
+    },
+    Address: {
+      type: String,
+    },
+    FathersOccupation: {
+      type: String,
+    },
     displayName: {
       type: String,
     },
@@ -61,15 +78,14 @@ const studentModel = mongoose.Schema(
       ref: "admins",
     },
 
+    gender: {
+      type: String,
+    },
     profile: {
       type: String,
     },
 
-    gender: {
-      type: String,
-    },
-
-    teacher: {
+    classTeacher: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "teachers",
     },

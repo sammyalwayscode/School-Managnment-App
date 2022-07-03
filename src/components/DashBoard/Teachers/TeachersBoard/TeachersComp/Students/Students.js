@@ -13,7 +13,6 @@ import { GlobalState } from "../../../../../ContexGlobal/Global";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import AddStudentModal from "../../../../Teachers/TeachersBoard/TeachersComp/Class/AddStudentModal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -48,7 +47,6 @@ const rows = [
 ];
 
 const Students = () => {
-  const { stuModalSwitch } = useContext(GlobalState);
   const { classID } = useParams();
 
   const [students, setStudents] = React.useState([]);
@@ -74,7 +72,6 @@ const Students = () => {
 
   return (
     <>
-      <AddStudentModal />
       <Container>
         <Wrapper>
           <h3>All Students</h3>
@@ -129,8 +126,6 @@ const Container = styledComponents.div`
   display: flex;
   justify-content: center;
   font-family: poppins;
-  position: absolute;
-  z-index: 200;
 
   @media (max-width: 770px) {
     margin-left: 50px;

@@ -169,17 +169,28 @@ const deleteStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
   try {
-    const { gender, profile, phoneNumber, displayName } = req.body;
+    const {
+      profile,
+      parentName1,
+      parentName2,
+      DOB,
+      Address,
+      parentPhone,
+      FathersOccupation,
+    } = req.body;
 
     const image = await cloudinary.uploader.upload(req.file.path);
 
     const users = await studentModel.findByIdAndUpdate(
       req.params.id,
       {
-        gender,
+        parentName1,
+        parentName2,
+        parentPhone,
         profile,
-        phoneNumber,
-        displayName,
+        DOB,
+        Address,
+        FathersOccupation,
         avatar: image.secure_url,
         avatarID: image.public_id,
       },
