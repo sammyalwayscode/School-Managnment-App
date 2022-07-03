@@ -21,9 +21,9 @@ const Desktop = () => {
     <Container>
       <Wrapper>
         <NavsCtrl>
-          <MainNav to="/" style={{ backgroundColor: " #ffa301" }}>
+          <MainNav to="/">
             <Nav>
-              <IconHold style={{ color: "#fff" }}>
+              <IconHold>
                 <AiFillDashboard />
               </IconHold>
               <span>Overview</span>
@@ -93,7 +93,7 @@ const Desktop = () => {
               <span>My Profile</span>
             </Nav>
           </MainNav>
-          <MainNav to="">
+          <MainNavOut to="">
             <Nav
               onClick={() => {
                 dispatch(logOut());
@@ -105,7 +105,7 @@ const Desktop = () => {
               </IconHold>
               <span>Log Out</span>
             </Nav>
-          </MainNav>
+          </MainNavOut>
         </NavsCtrl>
       </Wrapper>
     </Container>
@@ -120,6 +120,8 @@ const Container = styled.div`
   background-color: #031e3e;
   width: 180px;
   font-family: poppins;
+  position: fixed;
+
   @media (max-width: 768px) {
     display: none;
   }
@@ -137,9 +139,20 @@ const MainNav = styled(NavLink)`
   /* border-bottom: 1px solid gray; */
   cursor: pointer;
 
-  /* &.active{
+  &.active {
     background-color: #ffa301;
-  } */
+  }
+`;
+
+const MainNavOut = styled.div`
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  /* border-top: 1px solid gray; */
+  /* border-bottom: 1px solid gray; */
+  cursor: pointer;
 `;
 
 const IconHold = styled.section`

@@ -134,8 +134,6 @@ const Container = styledComponents.div`
   display: flex;
   justify-content: center;
   font-family: poppins;
-  position: absolute;
-  z-index: 200;
 
   @media (max-width: 770px) {
     margin-left: 50px;

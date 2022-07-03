@@ -3,40 +3,41 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { GrDocumentUpdate, GrUpdate } from "react-icons/gr";
-import UpdateModal from "./UpdateModal";
 import { useContext } from "react";
 import { GlobalState } from "../../../../../ContexGlobal/Global";
+import ProfileUpdate from "./ProfileUpdate";
 
-const TeacherProfileUpdate = () => {
-  const teacherUser = useSelector((state) => state.user);
-  const { teachModalSwitch } = useContext(GlobalState);
+const MyProfile = () => {
+  const studentUser = useSelector((state) => state.user);
+  const { updateStudentModal } = useContext(GlobalState);
   // const { id } = useParams();
 
-  const [teacherDetailGet, setTeacherDetailGet] = React.useState({});
+  const [studentDetailGet, setStudentDetailGet] = React.useState({});
 
   const getTeachers = async () => {
     const mainURL = "";
     const localURL = "http://localhost:2332";
-    const url = `${localURL}/api/teacher/${teacherUser._id}`;
+    const url = `${localURL}/api/student/${studentUser._id}`;
+    console.log(studentUser._id);
 
     await axios.get(url).then((res) => {
-      setTeacherDetailGet(res.data.data);
+      setStudentDetailGet(res.data.data);
       console.log(res.data.data);
     }, []);
   };
 
   React.useEffect(() => {
     getTeachers();
-    console.log(teacherDetailGet);
+    console.log(studentDetailGet);
   }, []);
 
   return (
     <>
-      <UpdateModal />
+      <ProfileUpdate />
       <Container>
         <Wrapper>
-          <h4>TeacherDetail</h4>
-          <button onClick={teachModalSwitch}> Update Profile</button>
+          <h4>My Profile</h4>
+          <button onClick={updateStudentModal}> Update Profile</button>
           <DetailContainer>
             <DetailContainerWrapper>
               <h5>About Me</h5>
@@ -45,35 +46,35 @@ const TeacherProfileUpdate = () => {
                   <img src="/teacher.jpg" alt="" />
                 </DetailImageContainer>
                 <DetailTextContainer>
-                  <TeachersName> {teacherDetailGet.fullName} </TeachersName>
+                  <TeachersName> {studentDetailGet.fullName} </TeachersName>
                   <TeachersShortDetail>
-                    {teacherDetailGet.profile}
+                    {studentDetailGet.profile}
                   </TeachersShortDetail>
 
                   <TeacherCredentialsHold>
                     <TitleContent>
                       <Title>Name:</Title>
-                      <Content>{teacherDetailGet.fullName}</Content>
+                      <Content>{studentDetailGet.fullName}</Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Gender:</Title>
-                      <Content> {teacherDetailGet.gender} </Content>
+                      <Content> {studentDetailGet.gender} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Diasplay Name:</Title>
-                      <Content> {teacherDetailGet.displayName} </Content>
+                      <Content> {studentDetailGet.displayName} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Religion:</Title>
-                      <Content> {teacherDetailGet.religion} </Content>
+                      <Content> {studentDetailGet.religion} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>E-mail:</Title>
-                      <Content> {teacherDetailGet.email} </Content>
+                      <Content> {studentDetailGet.email} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Subject:</Title>
-                      <Content> {teacherDetailGet.subject} </Content>
+                      <Content> {studentDetailGet.subject} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>No Of Classes:</Title>
@@ -81,15 +82,15 @@ const TeacherProfileUpdate = () => {
                     </TitleContent>
                     <TitleContent>
                       <Title>Teacher Code:</Title>
-                      <Content> {teacherDetailGet.teacherCode} </Content>
+                      <Content> {studentDetailGet.teacherCode} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Home Address:</Title>
-                      <Content> {teacherDetailGet.address} </Content>
+                      <Content> {studentDetailGet.address} </Content>
                     </TitleContent>
                     <TitleContent>
                       <Title>Phone Number:</Title>
-                      <Content> 0{teacherDetailGet.phoneNumber} </Content>
+                      <Content> 0{studentDetailGet.phoneNumber} </Content>
                     </TitleContent>
                   </TeacherCredentialsHold>
                 </DetailTextContainer>
@@ -102,7 +103,7 @@ const TeacherProfileUpdate = () => {
   );
 };
 
-export default TeacherProfileUpdate;
+export default MyProfile;
 
 const Container = styled.div`
   min-height: calc(100vh - 50px);

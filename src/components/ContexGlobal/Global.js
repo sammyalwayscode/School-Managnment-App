@@ -17,6 +17,16 @@ export const MainGlobal = ({ children }) => {
     setAddStuModal(!addStuModal);
   };
 
+  const [editTeacherPrifileModal, setEditTeacherPrifileModal] = useState(false);
+  const teachModalSwitch = () => {
+    setEditTeacherPrifileModal(!editTeacherPrifileModal);
+  };
+
+  const [updateStudent, setUpdateStudent] = useState(false);
+  const updateStudentModal = () => {
+    setUpdateStudent(!updateStudent);
+  };
+
   return (
     <GlobalState.Provider
       value={{
@@ -27,6 +37,10 @@ export const MainGlobal = ({ children }) => {
         openModal,
         addStuModal,
         stuModalSwitch,
+        teachModalSwitch,
+        editTeacherPrifileModal,
+        updateStudent,
+        updateStudentModal,
       }}
     >
       {children}

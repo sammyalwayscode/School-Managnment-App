@@ -31,7 +31,7 @@ router.route("/:id/school").get(getTeacherSchool);
 router.route("/:id").get(getTeacher);
 
 router
-  .route("/:id/:teacher")
+  .route("/:id/")
   // .get(getTeacher)
   .patch(updateTeacher)
   .delete(deleteTeacher);
